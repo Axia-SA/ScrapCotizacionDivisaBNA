@@ -29,6 +29,12 @@ After run all the steps, the script will create four files:
 Execute `./main.py` (or `python main.py`) and follow the menu
 
 
+### Results
+
+An example of the obtained data from 2002 to August 2019
+
+![Capture](https://github.com/Axia-SA/ScrappingBNA/blob/master/serie.PNG)
+
 About
 ----
 
