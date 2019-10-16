@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-
+
 import scrapy
 import json
 import datetime
@@ -8,8 +9,7 @@ from datetime import timedelta
 from functions import file_len
 
 fechaHoy = datetime.datetime.now()
-iteradorFecha = datetime.datetime(2002, 1, 1)  # <--- Iterar desde la siguiente fecha
-#iteradorFecha = datetime.datetime(2019, 9, 11)  # <--- Iterar desde la siguiente fecha
+iteradorFecha = datetime.datetime(2002, 1, 1)  # <--- Iterar desde la siguiente fecha YYYY, MM, DD
 
 url = "https://www.bna.com.ar/Cotizador/HistoricoPrincipales?id=monedas&fecha=_FECHA_&filtroEuro=1&filtroDolar=1&"
 

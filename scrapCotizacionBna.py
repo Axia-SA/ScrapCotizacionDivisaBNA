@@ -22,9 +22,7 @@ class Moneda:
         self.fecha = f
         self.nombreDivisa = nD
 
-# Obtiene de la página del Banco Nación las cotizaciones de las divisas, y la cotización
-# de billetes del Real (dividido por 100).
-# Posteriormente realiza un POST al backend del sistema de Axia para guardar los datos
+# Obtiene de la página del Banco Nación las cotizaciones de las divisas
 
 class BootstrapTableSpider(scrapy.Spider):
     name = "tabla"
@@ -32,9 +30,6 @@ class BootstrapTableSpider(scrapy.Spider):
     def start_requests(self):
         f = open("hipervinculos.txt", "r")
         urls = f.read().split(',')
-        #urls = [
-        #    print(contents)
-        #]
         f.close()
 
         for url in urls:
