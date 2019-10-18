@@ -54,7 +54,7 @@ def escribir_archivo_sql():
    f = open("SQL.sql","w+")
    contador = 0
    for y in rows:
-      f.write("INSERT INTO tipo_cambio (moneda, cambio, fuente_cotizacion, fecha_cotizacion) VALUES (" + str(y[0]) + ", " + str(y[2]) + ", \"BNA\", \"" + str(y[3]) + "\");\n")
+      f.write("INSERT INTO tipo_cambio (moneda, cambio, fuente_cotizacion, fecha_cotizacion) VALUES (" + str(y[0]) + ", " + str(y[2]) + ", \"BNA Divisa\", \"" + str(y[3]) + "\");\n")
       contador += 1
    f.close()
    conn.close()
