@@ -35,11 +35,6 @@ An example of the obtained data from 2002 to August 2019
 
 ![Capture](https://github.com/Axia-SA/ScrappingBNA/blob/master/serie.PNG)
 
-About
-----
-
-Written by Cristian Bottazzi
-
 
 [//]: #
    [Scrapy]: <https://scrapy.org>
