@@ -27,7 +27,7 @@ def armarSerieCompleta(idMoneda):
 			aux = aux + datetime.timedelta(days=1)
 			if aux == fecha_actual:
 				break
-			reg = (item[0], item[1], item[1], aux, "-", True)
+			reg = (item[0], item[2], item[2], aux, "-", True)
 			cursor.execute("INSERT INTO divisa (idMoneda, compra, venta, fecha, nombreDivisa, generado) VALUES(?,?,?,?,?,?)", reg)
 			print("Completando fechas desde " + str(fecha_anterior.strftime("%d/%m/%Y")) + " hasta " + str(fecha_actual.strftime("%d/%m/%Y")) + " - iter: " + str(iters) + " - " + repr(aux.strftime("%d/%m/%Y")) + " idMoneda: " + str(item[0]) + " item: " + item[4])
 			iters -= 1
