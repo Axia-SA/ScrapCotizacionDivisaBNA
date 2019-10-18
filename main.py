@@ -8,9 +8,10 @@ from procesarDatos import procesarDatos
 from armarSerieCompleta import armarSerieCompleta
 
 os.system("clear")
-print(color.RED + "  =======================================")
-print("  | Captura de cotizacion de divisas BNA |")
-print("  ======================================="+ color.END)
+print(color.RED + "    ========================================")
+print("    | Captura de cotizacion de divisas BNA |")
+print("    |    Axia S.A. -  http://axia.com.ar   |")
+print("    ========================================" + color.END)
 
 menu = {}
 menu['1']= "Generar " + color.GREEN + "hipervinculos" + color.END

@@ -28,6 +28,22 @@ After run all the steps, the script will create four files:
 
 Execute `./main.py` (or `python main.py`) and follow the menu
 
+```
+  =======================================
+  | Captura de cotizacion de divisas BNA |
+  |    Axia S.A.  - http://axia.com.ar   |
+  =======================================
+-------------------  MENU  ------------------------
+1 Generar hipervinculos
+2 Iniciar captura de datos
+3 Procesar datos capturados eliminando valores repetidos
+4 Armar serie completa  incluyendo fines de semana y feriados
+5 Iniciar proceso COMPLETO
+q Salir
+-------------------  END  -------------------------
+Seleccion:
+
+```
 
 ### Results
 
