@@ -3,8 +3,9 @@
 # -*- coding: utf-8 -*- 
 
 import os.path
-from functions import color, generarUrls, capturarDatos
+from functions import color, generarUrls, capturarDatos, escribir_archivo_sql
 from procesarDatos import procesarDatos
+from armarSerieCompleta import armarSerieCompleta
 
 os.system("clear")
 print(color.RED + "  =======================================")
@@ -14,8 +15,9 @@ print("  ======================================="+ color.END)
 menu = {}
 menu['1']= "Generar " + color.GREEN + "hipervinculos" + color.END
 menu['2']= color.GREEN + "Iniciar captura " + color.END + "de datos"
-menu['3']= color.GREEN + "Procesar " + color.END + "los datos capturados eliminando repetidos"
-menu['4']= "Iniciar proceso " + color.GREEN + "COMPLETO " + color.END
+menu['3']= color.GREEN + "Procesar datos capturados " + color.END + "eliminando valores repetidos"
+menu['4']= color.GREEN + "Armar serie completa "+ color.END +" incluyendo fines de semana y feriados"
+menu['5']= "Iniciar proceso " + color.GREEN + "COMPLETO " + color.END
 menu['q']= color.YELLOW + "Salir" + color.END
 
 while True:
@@ -37,12 +39,22 @@ while True:
 		print(color.GREEN + "Procesando datos..." + color.END)
 		procesarDatos()
 	elif selection == '4':
+		print(color.GREEN + "Armando serie..." + color.END)
+		armarSerieCompleta(2)
+		armarSerieCompleta(3)
+		escribir_archivo_sql()
+	elif selection == '5':
 		confirm = input('  Iniciar proceso completo? s/N: ')
 		if confirm == "s":
+			confirm = input('  Ejecutar opcion 4? s/N: ')
 			generarUrls()
 			capturarDatos()
 			print(color.GREEN + "Procesando datos..." + color.END)
 			procesarDatos()
+			if confirm == "s":
+				armarSerieCompleta(2)
+				armarSerieCompleta(3)
+			escribir_archivo_sql()
 	elif selection == 'q':
 		break
 	else: 
