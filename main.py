@@ -2,8 +2,8 @@
 # -*- encoding: utf-8 -*-
 # -*- coding: utf-8 -*- 
 
-import os.path
-from functions import color, generarUrls, capturarDatos, escribir_archivo_sql
+import os
+from functions import color, generarUrls, capturarDatos, escribir_archivo_sql, delete
 from procesarDatos import procesarDatos
 from armarSerieCompleta import armarSerieCompleta
 
@@ -30,16 +30,26 @@ while True:
 	print("-------------------  END  -------------------------")
 
 	selection = input("Seleccion: ")
+	os.system("clear")
 	if selection =='1':
 		generarUrls()
 	elif selection == '2':
+		if os.path.isfile('hipervinculos.txt') is False:
+			print(color.RED + "No se han generado los hipervinculos \n\n" + color.END)
+			continue
 		confirm = input('  Iniciar captura de datos? s/N: ')
 		if confirm == "s":
 			capturarDatos()
 	elif selection == '3':
+		if os.path.isfile('datos.txt') is False:
+			print(color.RED + "No se han capturado datos \n\n" + color.END)
+			continue
 		print(color.GREEN + "Procesando datos..." + color.END)
 		procesarDatos()
 	elif selection == '4':
+		if os.path.isfile('sql.db') is False:
+			print(color.RED + "No se han procesado los datos obtenidos \n\n" + color.END)
+			continue
 		print(color.GREEN + "Armando serie..." + color.END)
 		armarSerieCompleta(2)
 		armarSerieCompleta(3)
@@ -48,6 +58,10 @@ while True:
 		confirm = input('  Iniciar proceso completo? s/N: ')
 		if confirm == "s":
 			confirm = input('  Ejecutar opcion 4? s/N: ')
+			delete('hipervinculos.txt')
+			delete('datos.txt')
+			delete('sql.db')
+			delete('SQL.sql')
 			generarUrls()
 			capturarDatos()
 			print(color.GREEN + "Procesando datos..." + color.END)
@@ -59,6 +73,6 @@ while True:
 	elif selection == 'q':
 		break
 	else: 
-		print("no existe la opcion")
+		print("no existe la opcion seleccionada")
 		os.system("clear")
 

@@ -1,4 +1,4 @@
-import os.path
+import os
 import sqlite3
 
 class color:
@@ -59,3 +59,7 @@ def escribir_archivo_sql():
    f.close()
    conn.close()
    print(color.YELLOW + "Se ha generado un archivo SQL con ", contador, " registros" + color.END)
+
+def delete(file):
+   if os.path.isfile(file):
+      os.remove(file)

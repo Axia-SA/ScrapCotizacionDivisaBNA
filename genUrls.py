@@ -6,7 +6,9 @@ import scrapy
 import json
 import datetime
 from datetime import timedelta
-from functions import file_len
+from functions import file_len, delete
+
+delete('hipervinculos.txt')
 
 fechaHoy = datetime.datetime.now()
 iteradorFecha = datetime.datetime(2002, 1, 1)  # <--- Iterar desde la siguiente fecha YYYY, MM, DD
