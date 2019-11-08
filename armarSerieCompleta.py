@@ -18,6 +18,7 @@ def armarSerieCompleta(idMoneda):
 	fecha_anterior = datetime.datetime.now()
 	date_format = "%Y-%m-%d"
 	contador = 0
+	reg_anterior = None
 	for item in registros:
 		fecha_actual = datetime.datetime.strptime(item[3], date_format)
 
@@ -27,12 +28,13 @@ def armarSerieCompleta(idMoneda):
 			aux = aux + datetime.timedelta(days=1)
 			if aux == fecha_actual:
 				break
-			reg = (item[0], item[2], item[2], aux, "-", True)
+			reg = (reg_anterior[0], reg_anterior[2], reg_anterior[2], aux, "-", True)
 			cursor.execute("INSERT INTO divisa (idMoneda, compra, venta, fecha, nombreDivisa, generado) VALUES(?,?,?,?,?,?)", reg)
 			print("Completando fechas desde " + str(fecha_anterior.strftime("%d/%m/%Y")) + " hasta " + str(fecha_actual.strftime("%d/%m/%Y")) + " - iter: " + str(iters) + " - " + repr(aux.strftime("%d/%m/%Y")) + " idMoneda: " + str(item[0]) + " item: " + item[4])
 			iters -= 1
 			contador += 1
 		fecha_anterior = fecha_actual
+		reg_anterior = item
 	conn.commit()
 	print(color.GREEN + "Se agregan " + str(contador) + " registros para esta divisa" + color.END)
 	conn.close()
