@@ -1,5 +1,5 @@
-# ScrappingBNA
-Scrapping tool for *Banco de la Nación Argentina* historic USD and EUR currency values
+# ScrapingBNA
+Scraping tool for *Banco de la Nación Argentina* historic USD and EUR currency values
 
 ![Generic badge](https://img.shields.io/badge/made%20with-Python-blue.svg) ![Generic badge](https://img.shields.io/badge/status-PROD-green.svg)
 
