@@ -11,6 +11,7 @@ os.system("clear")
 print(color.RED + "    ========================================")
 print("    | Captura de cotizacion de divisas BNA |")
 print("    |    Axia S.A. -  http://axia.com.ar   |")
+print("    |  Desarrollado por Cristian Bottazzi  |")
 print("    ========================================" + color.END)
 
 menu = {}
@@ -41,13 +42,13 @@ while True:
 		if confirm == "s":
 			capturarDatos()
 	elif selection == '3':
-		if os.path.isfile('datos.txt') is False:
+		if os.path.isfile('json.txt') is False:
 			print(color.RED + "No se han capturado datos \n\n" + color.END)
 			continue
 		print(color.GREEN + "Procesando datos..." + color.END)
 		procesarDatos()
 	elif selection == '4':
-		if os.path.isfile('sql.db') is False:
+		if os.path.isfile('sqlite.db') is False:
 			print(color.RED + "No se han procesado los datos obtenidos \n\n" + color.END)
 			continue
 		print(color.GREEN + "Armando serie..." + color.END)
@@ -57,10 +58,10 @@ while True:
 	elif selection == '5':
 		confirm = input('  Iniciar proceso completo? s/N: ')
 		if confirm == "s":
-			confirm = input('  Ejecutar opcion 4? s/N: ')
+			confirm = input('  Ejecutar opcion 4? (completar serie incluyendo fines de semana y feriados) s/N: ')
 			delete('hipervinculos.txt')
-			delete('datos.txt')
-			delete('sql.db')
+			delete('json.txt')
+			delete('sqlite.db')
 			delete('SQL.sql')
 			generarUrls()
 			capturarDatos()

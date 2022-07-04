@@ -15,12 +15,12 @@ class color:
 
 def capturarDatos():
 	print(color.GREEN + "Iniciando..." + color.END)
-	os.system("scrapy runspider scrapCotizacionBna.py")
+	os.system("python3 obtenerValoresBNA.py")
 	print(color.GREEN + "Finalizado." + color.END)
 
 def generarUrls():
 	print(color.GREEN + "Iniciando..." + color.END)
-	os.system("python genUrls.py")
+	os.system("python3 generarUrls.py")
 	print(color.GREEN + "Finalizado." + color.END)
 
 def file_len(fname):
@@ -42,14 +42,14 @@ def create_connection_sqlite(db_file):
    return conn
 
 def escribir_archivo_sql():
-   database = r"sql.db"
+   database = r"sqlite.db"
    conn = create_connection_sqlite(database)
    if conn == None:
       print(color.RED + "No se pudo conectar a la base de datos" + color.END)
       return
    cursor = conn.cursor()
    print(color.GREEN + "Generando archivo SQL" + color.END)
-   cursor.execute("SELECT * FROM divisa ORDER BY fecha ASC")
+   cursor.execute("SELECT * FROM divisa ORDER BY date ASC")
    rows = cursor.fetchall()
    f = open("SQL.sql","w+")
    contador = 0
@@ -58,7 +58,7 @@ def escribir_archivo_sql():
       contador += 1
    f.close()
    conn.close()
-   print(color.YELLOW + "Se ha generado un archivo SQL con ", contador, " registros" + color.END)
+   print(color.YELLOW + "Se ha generado un archivo SQL (", color.GREEN + "SQL.sql" + color.END, ") ", color.YELLOW, "con", contador," registros" + color.END)
 
 def delete(file):
    if os.path.isfile(file):

@@ -4,7 +4,6 @@
 import json
 from sqlite3 import Error
 from functions import color, create_connection_sqlite, escribir_archivo_sql
-from armarSerieCompleta import armarSerieCompleta
 import datetime
  
  
@@ -17,16 +16,16 @@ def create_table(conn, create_table_sql):
  
  
 def procesarDatos():
-	database = r"sql.db"
+	database = r"sqlite.db"
  
 	sql_create_divisa_table = """ CREATE TABLE IF NOT EXISTS divisa (
-                                        idMoneda integer NOT NULL,
-                                        compra number NOT NULL,
-                                        venta number NOT NULL,
-                                        fecha date NOT NULL,
-                                        nombreDivisa text NOT NULL,
-                                        generado boolean DEFAULT 0,
-                                        CONSTRAINT pk_fecha_idMoneda PRIMARY KEY (idMoneda,fecha)
+                                        currencyId integer NOT NULL,
+                                        buy number NOT NULL,
+                                        sell number NOT NULL,
+                                        date date NOT NULL,
+                                        name text NOT NULL,
+                                        generated boolean DEFAULT 0,
+                                        CONSTRAINT pk_date_currencyId PRIMARY KEY (currencyId,date)
                                     ); """
  
     # create a database connection
@@ -37,19 +36,19 @@ def procesarDatos():
 	if conn is not None:
 		# create divisa table
 		create_table(conn, sql_create_divisa_table)
-		f = open("datos.txt")
+		f = open("json.txt")
 		data = f.read().rstrip().split('\n')  #rstrip para quitar la última línea en blanco
 		f.close()
 		cursor = conn.cursor()
 		print(color.GREEN + "Generando registros en base de datos" + color.END)
 		for d in data:
-			if d != None or d != "":
+			if d != None and d != "":
 				y = json.loads(d)
-				date = datetime.datetime.strptime(y["fecha"], "%d/%m/%Y").strftime("%Y-%m-%d")
-				cursor.execute("SELECT * FROM divisa WHERE idMoneda = ? AND fecha = ?", (y["idMoneda"], date))
+				date = datetime.datetime.strptime(y["date"], "%Y-%m-%d").strftime("%Y-%m-%d")
+				cursor.execute("SELECT * FROM divisa WHERE currencyId = ? AND date = ?", (y["currencyId"], date))
 				if cursor.fetchone() == None:
-					reg = (y["idMoneda"], y["compra"], y["venta"], date, y["nombreDivisa"])
-					cursor.execute("INSERT INTO divisa (idMoneda, compra, venta, fecha, nombreDivisa, generado) VALUES(?,?,?,?,?, FALSE)", reg)
+					reg = (y["currencyId"], y["buy"], y["sell"], date, y["currencyId"])
+					cursor.execute("INSERT INTO divisa (currencyId, buy, sell, date, name, generated) VALUES(?,?,?,?,?, FALSE)", reg)
 					contador = contador + 1
 
 		print(color.GREEN + "Commit realizado" + color.END)
