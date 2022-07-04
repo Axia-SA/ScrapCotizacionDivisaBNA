@@ -45,7 +45,7 @@ Seleccion:
 
 ```
 
-### Why exists option 4?
+### Why exists an option 4?
 
 If you won't need or don't want gaps between dates (weekends, holidays and such), the option 4 can be helpful to generate continuous time series.
 
@@ -100,7 +100,11 @@ After run all the steps, the script will create four files:
 | `SQL.sql` | Custom SQL Script (List of INSERT SQL sentences)| `INSERT INTO my_table (...) VALUES (...)` |
 
 
+Finally, a graph showing devaluation rate of argentine Peso (`ARS`) since february, 2002 to July, 2022.
+
 ![Capture](https://github.com/Axia-SA/ScrappingBNA/blob/master/serie.PNG)
+
+Written by Cristian Bottazzi - July 2022
 
 
 [//]: #
